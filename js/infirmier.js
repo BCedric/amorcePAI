@@ -17,4 +17,3 @@ module.exports = function(mod) {
         controller  : controller
     });
 };
- 
