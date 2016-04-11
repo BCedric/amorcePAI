@@ -14,8 +14,6 @@ module.exports = function(mod) {
         bindings    : {
             data    : '='
         },
-        controller    : function() {
-            console.log(this.data);
-        }
+        controller  : controller
     });
 };
