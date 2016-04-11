@@ -9,6 +9,7 @@ module.exports = function(mod) {
     }
     controller.$inject = [ proxyNF ]; // Injection de dépendances
 
+
     mod.component( "infirmier", {
         template    : template,
         bindings    : {
