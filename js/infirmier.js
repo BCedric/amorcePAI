@@ -2,12 +2,11 @@ var template = require( "./infirmier.html" );
 require( "./infirmier.css" );
 
 module.exports = function(mod) {
-    var proxyNF = require("./NF.js")(mod);
+    require("./patient.js")(mod);
 
     var controller = function() {
-        console.log(this.data);
+        var ctrl = this;
     }
-    controller.$inject = [ proxyNF ]; // Injection de dépendances
 
 
     mod.component( "infirmier", {
@@ -18,4 +17,3 @@ module.exports = function(mod) {
         controller  : controller
     });
 };
- 

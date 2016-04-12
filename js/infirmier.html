@@ -1,2 +1,7 @@
-{{$ctrl.data | json}}
-coucou
+<li>
+  <a>{{$ctrl.data.nom}} {{$ctrl.data.prenom}}</a>
+  <img src="{{$ctrl.data.photo}}" />
+  <table>
+    <patient ng-repeat="pat in $ctrl.data.patients" data="pat"></patient>
+  </table>
+</li>

@@ -3,7 +3,7 @@ require( "./cabinetMedical.css" );
 
 module.exports = function(mod) {
     var proxyNF = require("./NF.js")(mod);
-
+    require("./infirmier.js")(mod);
     var controller = function( proxyNF ) {
         var ctrl = this;
         ctrl.data = {};
