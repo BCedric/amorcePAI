@@ -4,6 +4,10 @@ var proxyNF = function($http) {
       return $http.get ( src )
                   .then( processData )
     }
+
+    this.addPatient = function(patient){
+      ajoutPatient(patient);
+    }
 }
 proxyNF.$inject = [ "$http" ]; // Injection de dépendances
 
@@ -73,4 +77,8 @@ function ajoutAdresse(patient, patientXML, critere){
   if(patientXML.querySelector(critere) != null ){
     patient.adresse[critere] = patientXML.querySelector(critere).textContent;
   }
+}
+
+function ajoutPatient(patient){
+  console.log(patient);
 }

@@ -1,7 +1,7 @@
-<li>
-  <a>{{$ctrl.data.nom}} {{$ctrl.data.prenom}}</a>
-  <img src="{{$ctrl.data.photo}}" />
-  <table>
+<md-list-item>
+  <h2>{{$ctrl.data.nom}} {{$ctrl.data.prenom}}</h2>
+  <img class="md-avatar" ng-src='{{$ctrl.data.photo}}' />
+  <md-list>
     <patient ng-repeat="pat in $ctrl.data.patients" data="pat"></patient>
-  </table>
-</li>
+  </md-list>
+</md-list-item>

@@ -1,11 +1,19 @@
-<tr>
-  <td>
-    {{$ctrl.data.nom}}
-  </td>
-  <td>
-    {{$ctrl.data.prenom}}
-  </td>
-  <td>
-    {{$ctrl.data.naissance}}
-  </td>
-</tr>
+
+<md-list-item>
+  <div class="md-list-item-text">
+      <h3>{{$ctrl.data.nom}} {{$ctrl.data.prenom}}</h3>
+      <md-list class="flex" flex="" role="list">
+        <md-list-item>
+            <h4>Date de naissance : </h4> {{$ctrl.data.naissance}}
+        </md-list-item>
+        <md-list-item>
+          <h4>Sexe : </h4> {{$ctrl.data.sexe}}
+        </md-list-item>
+        <md-list-item>
+          <h4>Adresse : </h4> {{$ctrl.data.adresse.numero}} {{$ctrl.data.adresse.rue}} {{$ctrl.data.adresse.ville}} {{$ctrl.data.adresse.codePostal}}
+        </md-list-item>
+
+      </md-list>
+  </div>
+
+</md-list-item>

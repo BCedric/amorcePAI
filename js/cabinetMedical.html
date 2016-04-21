@@ -1,8 +1,22 @@
+
+
 <h1>{{$ctrl.titre}}</h1>
-<div>
-  <ul>
-        <infirmier ng-repeat="inf in $ctrl.data.infirmiers" data="inf"></infirmier>
-  </ul>
-
-
-</div>
+  <div>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+          <span>Infirmiers</span>
+      </div>
+    </md-toolbar>
+    <md-list>
+          <infirmier ng-repeat="inf in $ctrl.data.infirmiers" data="inf"></infirmier>
+    </md-list>
+  </div>
+  <div>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span>Patients non affectés</span>
+      </div>
+    </md-toolbar>
+    
+    <patient ng-repeat="pat in $ctrl.data.patientsNonAffectes" data="pat"></patient>
+  </div>
