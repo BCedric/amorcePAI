@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<cabinet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xmlns="http://www.ujf-grenoble.fr/l3miage/cabinet"
-		 xsi:schemaLocation="http://www.ujf-grenoble.fr/l3miage/cabinet ../schema/cabinet.xsd"
-		 >
+<?xml version="1.0" encoding="UTF-8"?><cabinet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ujf-grenoble.fr/l3miage/cabinet" xsi:schemaLocation="http://www.ujf-grenoble.fr/l3miage/cabinet ../schema/cabinet.xsd">
 	<nom>Soins à Grenoble</nom>
 	<adresse>
 		<numero>60</numero>
@@ -91,7 +87,7 @@
                 n°1 ce jour là.
                 Lors de la derniere visite, l'intervenant doit aussi enlever les 25 points de suture de son operation.
                 -->
-			<visite date="2014-12-08" >
+			<visite date="2014-12-08">
 				<acte id="109"/>
 			</visite>
 
@@ -188,5 +184,5 @@
 			</visite>
 
 		</patient>
-	</patients>
+	
 </cabinet>

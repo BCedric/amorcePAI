@@ -6,7 +6,8 @@ var proxyNF = function($http) {
     }
 
     this.addPatient = function(patient){
-      ajoutPatient(patient);
+      ajoutPatient(patient, $http);
+      console.log($http);
     }
 }
 proxyNF.$inject = [ "$http" ]; // Injection de dépendances
@@ -79,6 +80,14 @@ function ajoutAdresse(patient, patientXML, critere){
   }
 }
 
-function ajoutPatient(patient){
-  console.log(patient);
+function ajoutPatient(patient, $http){
+  $http({
+  method: 'POST',
+  url: '/addPatient',
+  data: patient
+}).then(function successCallback(response) {
+    console.log("Ajout avec succès");
+  }, function errorCallback(response) {
+    console.log("Erreur de l'ajout");
+  });
 }
