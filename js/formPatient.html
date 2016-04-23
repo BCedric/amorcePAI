@@ -1,0 +1,77 @@
+
+
+<form name="ajouterPatient" ng-submit="$ctrl.ajouterPatient(); $ctrl.update();" novalidate >
+  <md-content>
+    <div>
+
+      <md-input-container class="name" >
+        <label for="patientName">Nom</label>
+        <input type="text" name="patientName" id="patientName" ng-model="$ctrl.patient.patientName"/>
+      </md-input-container>
+
+      <md-input-container class="forname" >
+        <label for="patientForname">Prénom</label>
+        <input type="text" name="patientForname" id="patientForname" ng-model="$ctrl.patient.patientForname"/>
+      </md-input-container>
+
+      <md-input-container class="sex">
+        <label for="patientSex">Sexe</label>
+        <md-select ng-model="$ctrl.patient.patientSex">
+          <md-option  value="M">M</md-option>
+          <md-option  value="F">F</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-datepicker class="birthday" md-placeholder="Date de naissance" ng-model="$ctrl.patient.birthday">Date de naissance
+      </md-datepicker>
+
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Numéro de sécurité sociale</label>
+        <input type="text" name="patientNumber" ng-model="$ctrl.patient.patientNumber" required ng-pattern="/^[0-9]{15}$/">
+        <div ng-messages="ajouterPatient.patientNumber.$error">
+          <div ng-message="pattern" class="my-message">Vous devez rentrer un nombre à 15 chiffres</div>
+        </div>
+      </md-input-container>
+
+    </div>
+  </md-content>
+
+    <md-content>
+
+
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Etage</label>
+        <input type="number" name="patientFloor" ng-model="$ctrl.patient.patientFloor" required ng-pattern="/^[0-9]*$/">
+        <div ng-messages="ajouterPatient.patientFloor.$error" >
+          <div ng-message="pattern">Vous devez rentrer un nombre</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="street">
+        <label for="patientStreet">Rue</label>
+        <input type="text" name="patientStreet" id="patientStreet" ng-model="$ctrl.patient.patientStreet"/>
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Code Postal</label>
+        <input type="number" name="postalCode" ng-model="$ctrl.patient.postalCode" placeholder="12345" ng-pattern="/^[0-9]{5}$/" md-maxlength="5" md-minlength="5">
+          <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+          <div ng-message="md-maxlength md-minlength pattern required" class="my-message">Entrez un nombre à cinq chiffres              </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="city">
+        <label for="patientCity">Ville : </label>
+        <input type="text" name="patientCity" id="patientCity" ng-model="$ctrl.patient.patientCity" />
+      </md-input-container>
+
+      <md-input-container class="infirmier">
+        <label for="infirmier">Infirmier</label>
+        <md-select ng-model="$ctrl.patient.infirmier">
+          <md-option  ng-repeat="(id, infirmier) in $ctrl.listInf" value="{{id}}">{{infirmier.nom}} {{infirmier.prenom}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      </md-content>
+    <md-button ng-disabled="$ctrl.patient.patientName=='' || $ctrl.patient.patientNumber=='' || $ctrl.patient.patientForname==''" type="submit" class="md-primary md-raised" id="btAddPatient">Ajouter ce patient</button>
+</form>

@@ -6,13 +6,18 @@ module.exports = function(mod) {
 
     var controller = function() {
         var ctrl = this;
+
+        ctrl.updateData = function () {
+            ctrl.onUpdate();
+        }
     }
 
 
     mod.component( "infirmier", {
         template    : template,
         bindings    : {
-            data    : '='
+            data    : '=',
+            onUpdate  : '&'
         },
         controller  : controller
     });

@@ -8,7 +8,7 @@
       </div>
     </md-toolbar>
     <md-list>
-          <infirmier ng-repeat="inf in $ctrl.data.infirmiers" data="inf"></infirmier>
+          <infirmier ng-repeat="inf in $ctrl.data.infirmiers" data="inf" on-update="$ctrl.updateData()"></infirmier>
     </md-list>
   </div>
   <div>
@@ -17,6 +17,19 @@
         <span>Patients non affectés</span>
       </div>
     </md-toolbar>
-    
-    <patient ng-repeat="pat in $ctrl.data.patientsNonAffectes" data="pat"></patient>
+
+    <patient-non-affecte ng-repeat="pat in $ctrl.data.patientsNonAffectes" data="pat" on-update="$ctrl.updateData()"></patient-non-affecte>
   </div>
+
+  <section id="ajouterPatient" class="">
+    <section>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span>Ajouter un patient</span>
+        </div>
+      </md-toolbar>
+
+      <form-patient on-update="$ctrl.updateData()"></form-patient>
+
+    </section>
+  </section>

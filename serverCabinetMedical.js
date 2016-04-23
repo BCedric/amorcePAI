@@ -1,4 +1,4 @@
-/**_________________________________________________________________________________________________________________________________ 
+/**_________________________________________________________________________________________________________________________________
  * Get external libraries ---------------------------------------------------------------------------------------------------------
  **/
 var fs				= require('fs-extra')				// Access files
@@ -14,7 +14,7 @@ var fs				= require('fs-extra')				// Access files
 , domParser			= null
 ;
 
-/**_________________________________________________________________________________________________________________________________ 
+/**_________________________________________________________________________________________________________________________________
  * Save the XML into a file, file acces is asynchronous ----------------------------------------------------------------------------
  *   - doc : the document containing the XML ---------------------------------------------------------------------------------------
  *   - res : the result stream of a client HTTP request ----------------------------------------------------------------------------
@@ -31,9 +31,9 @@ function saveXML(doc, res) {
 		      res.end();
 		  }
 		);
-} 
+}
 
-/**_________________________________________________________________________________________________________________________________ 
+/**_________________________________________________________________________________________________________________________________
  * Returns DOM node of patient identified by numlber in document doc or null if there is no such patient ---------------------------
  **/
 function getPatient(doc, number) {
@@ -58,7 +58,7 @@ function init(port, applicationServerIP, applicationServerPort) {
     , app											// will reference the HTTP server
     , applicationServer = {ip: applicationServerIP, port: applicationServerPort}	// Application server IP and port that is in charge of optimizing nurses' travels, by default, this server
     ;
-    
+
     // Read and parse the XML file containing the data
     fs.readFile	(__dirname + '/data/cabinetInfirmier.xml'
 		 , function(err, dataObj) {
@@ -73,7 +73,7 @@ function init(port, applicationServerIP, applicationServerPort) {
 			    }
 		 }
 		);
-    
+
     // Initialize the HTTP server
     app	= express();
 	app.use(staticGzip(/^\/?dist\/.*(\.js|\.css)$/));
@@ -82,7 +82,7 @@ function init(port, applicationServerIP, applicationServerPort) {
 	.use( bodyParser.json() )								// Add a parser for json HTTP request
 	.use( multer({ dest: './uploads/'}).array() )					// Add a parser for file transmission
 	.listen(port) ;											// HTTP server listen to this TCP port
-    
+
 
 	app.disable('etag');
     // Define HTTP ressource GET /
@@ -116,7 +116,7 @@ function init(port, applicationServerIP, applicationServerPort) {
 				   });
 		  }
 		);
-		
+
 	// Define HTTP ressource POST /, contains a login that identify the secretary or one nurse
 	app.post( '/'
 			, function(req, res) {
@@ -140,7 +140,7 @@ function init(port, applicationServerIP, applicationServerPort) {
 					}
 				}
 			);
-			
+
 	// Define HTTP ressource PORT /addPatient, may contains new patient information
 	app.post( '/addPatient'
 			, function(req, res) {
@@ -154,7 +154,7 @@ function init(port, applicationServerIP, applicationServerPort) {
 				 req.body.patientStreet		= req.body.patientStreet	|| '';
 				 req.body.patientPostalCode	= req.body.patientPostalCode|| '';
 				 req.body.patientCity		= req.body.patientCity		|| '';
-				 
+
 				 var patients = doc.getElementsByTagName('patients')[0];
 				 // Is it a new patient or not ?
 				 var newPatient = getPatient(doc, req.body.patientNumber);
@@ -208,15 +208,16 @@ function init(port, applicationServerIP, applicationServerPort) {
 						var codePostal = doc.createElement('codePostal');
 						codePostal.appendChild( doc.createTextNode(req.body.patientPostalCode) );
 						adresse.appendChild( codePostal );
-						
+
 				 console.log( xmlSerializer.serializeToString(newPatient) );
 				 saveXML(doc, res);
 				}
 			);
-    
+
     // Define HTTP ressource POST /affectation, associate a patient with a nurse
     app.post( '/affectation'
 	      , function(req, res) {
+          console.log(req.body);
 		  if( typeof req.body.infirmier	=== 'undefined'
 		      ||typeof req.body.patient		=== 'undefined' ) {
 		      res.writeHead(500);
@@ -271,7 +272,7 @@ function init(port, applicationServerIP, applicationServerPort) {
 						  );
 			  }
 			  );
-	    
+
 	app.get ( '/check'
 			, function(req, res) {
 				 var str_xml, str_xsd;
@@ -283,7 +284,7 @@ function init(port, applicationServerIP, applicationServerPort) {
 														);
 											}
 										)
-				   , P_xsd = new Promise( function(resolve, reject) {  
+				   , P_xsd = new Promise( function(resolve, reject) {
 											 fs.readFile( __dirname + '/data/cabinet.xsd'
 														, function(err, dataObj) {
 															 if(err) {reject();} else {str_xsd = "".concat(dataObj); resolve();}
@@ -293,7 +294,7 @@ function init(port, applicationServerIP, applicationServerPort) {
 										)
 					, P_all = Promise.all( [P_xml, P_xsd] )
 					; // End of promises
-				   
+
 				 P_all.then	( function() { // If resolved
 								 // Check xml / xsd
 								 console.log( './data/cabinet.xsd' );
@@ -313,9 +314,9 @@ function init(port, applicationServerIP, applicationServerPort) {
 }
 
 
-/**_________________________________________________________________________________________________________________________________ 
+/**_________________________________________________________________________________________________________________________________
  * Parse command line parameters and initialize everything ------------------------------------------------------------------------
- **/	
+ **/
 var params = {}, p;
 for(var i=2; i<process.argv.length; i++) {
     p = process.argv[i].split(':');

@@ -7,9 +7,14 @@ module.exports = function(mod) {
     var controller = function( proxyNF ) {
         var ctrl = this;
         ctrl.data = {};
-        proxyNF.getData(this.src).then( function(obj) {
-          ctrl.data = obj;
-        });
+
+        proxyNF.getData(this.src).then( function(obj) { ctrl.data = obj });
+
+        ctrl.updateData=function(){
+          proxyNF.getData(this.src).then( function(obj) {
+            ctrl.data = obj;
+          });
+        };
     }
     controller.$inject = [ proxyNF ]; // Injection de dépendances
 

@@ -5,9 +5,26 @@ var proxyNF = function($http) {
                   .then( processData )
     }
 
+
     this.addPatient = function(patient){
+      console.log(patient);
       ajoutPatient(patient, $http);
-      console.log($http);
+    }
+
+    this.affectation = function(idInf, patientNSS){
+      var data = {};
+      data.infirmier = idInf;
+      data.patient = patientNSS;
+
+      $http({
+      method: 'POST',
+      url: '/affectation',
+      data: data
+    }).then(function successCallback(response) {
+        console.log("Affecté avec succès");
+      }, function errorCallback(response) {
+        console.log("Erreur de l'affectation");
+      });
     }
 }
 proxyNF.$inject = [ "$http" ]; // Injection de dépendances
@@ -52,7 +69,8 @@ function processData(response) {
       nom : arrayPatientsXML[i].querySelector("nom").textContent,
       prenom : arrayPatientsXML[i].querySelector("prenom").textContent,
       sexe : arrayPatientsXML[i].querySelector("sexe").textContent,
-      naissance : arrayPatientsXML[i].querySelector("naissance").textContent
+      naissance : arrayPatientsXML[i].querySelector("naissance").textContent,
+      numero : arrayPatientsXML[i].querySelector("numero").textContent
     }
     adressePatient(patient, arrayPatientsXML[i]);
     if(arrayPatientsXML[i].querySelector("visite") != null && arrayPatientsXML[i].querySelector("visite").getAttribute("intervenant") != null){
@@ -68,7 +86,6 @@ function processData(response) {
 function adressePatient(patient, patientXML){
   patient["adresse"] ={};
   ajoutAdresse(patient, patientXML, "etage");
-  ajoutAdresse(patient, patientXML, "numero");
   ajoutAdresse(patient, patientXML, "rue");
   ajoutAdresse(patient, patientXML, "ville");
   ajoutAdresse(patient, patientXML, "codePostal");
@@ -85,9 +102,9 @@ function ajoutPatient(patient, $http){
   method: 'POST',
   url: '/addPatient',
   data: patient
-}).then(function successCallback(response) {
-    console.log("Ajout avec succès");
-  }, function errorCallback(response) {
-    console.log("Erreur de l'ajout");
+}).then(function successCallback() {
+    console.log("Ajout avec succès ");
+  }, function errorCallback() {
+    console.log("Erreur de l'ajout ");
   });
 }

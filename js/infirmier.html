@@ -2,6 +2,6 @@
   <h2>{{$ctrl.data.nom}} {{$ctrl.data.prenom}}</h2>
   <img class="md-avatar" ng-src='{{$ctrl.data.photo}}' />
   <md-list>
-    <patient ng-repeat="pat in $ctrl.data.patients" data="pat"></patient>
+    <patient ng-repeat="pat in $ctrl.data.patients" data="pat" on-update="$ctrl.updateData()"></patient>
   </md-list>
 </md-list-item>
